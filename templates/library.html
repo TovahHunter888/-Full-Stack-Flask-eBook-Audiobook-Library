@@ -1,0 +1,73 @@
+<!-- This tells the browser we’re using HTML5 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Set character encoding to support all characters -->
+    <meta charset="UTF-8">
+    <!-- Makes the site responsive for mobile and tablet screens -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- This sets the title shown in the browser tab -->
+    <title>The Reading Nookie Library</title>
+    <!-- Link to the CSS file that styles this library page -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='library.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('library') }}">Library</a>
+        <a href="{{ url_for('reviews_book', book_id=1)}}">Reviews</a>
+    </div>
+
+    <div class="library-content">
+        <!-- Page header -->
+        <h1>Download and Listening to Your favorite book!</h1>
+        <!-- This table will display book info pulled from the database -->
+        <table border="1">
+            <thead>
+                <tr>
+                    <!-- These are the column titles in the table -->
+                    <th>Title</th>
+                    <th>Genre</th>
+                    <th>Author</th>
+                    <th>Ebook Format</th>
+                    <th>Audiobook Format</th>
+                    <th>Date Added</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through each book in the list passed from Flask -->
+                {% for book in cursor_books %}
+                <tr>
+                    <!-- Each column here matches the data in the SELECT query -->
+                     
+                    <td>{{book[0]}}</td> <!-- Book Title -->
+                    <td>{{book[1]}}</td> <!-- Genre -->
+                    <td>{{book[2]}}</td> <!-- Author -->
+                    
+                    <td> 
+                        {% if book[3] %} <!--Check if ebook format/filename exists -->
+                            <a href="{{url_for('static', filename='ebooks/' +book[3]) }}" download>{{ book[3] }}</a>
+                        {% else %}
+                        {% endif %}
+                    </td>
+
+                    <!--Audiobook Download Link --> 
+                    <td>
+                        {% if book[4] %} <!-- Check if audiobook format/filename exists-->
+                            <a href="{{ url_for('static', filename='audiobooks/' + book[4]) }}" download>{{ book[4] }}</a>
+                        {% else %}
+                        {% endif %}
+                    </td>
+
+                    <!-- Date the book was added -->
+                    <td>{{book[5].strftime('%Y-%m-%d') }}</td> 
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+    </div>
+</body>
+</html>

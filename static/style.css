@@ -1,0 +1,88 @@
+/* --- style.css --- */
+
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: black;
+    text-shadow: 1px 1px 0 lightgray;
+    border-bottom: 3px double burlywood;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Georgia', serif;
+    background: url("/static/images/img_background_nookie.png") no-repeat center center fixed;
+    background-size: cover;
+    color: black;
+    text-align: center;
+}
+
+
+/* Container */
+.container {
+    background-color: burlywood;
+    padding: 35px;
+    border-radius: 10px;
+    border: 3px double burlywood;
+    max-width: 450px;
+    width: 90%;
+    text-align: center;
+}
+
+/* Heading */
+.container h1 {
+    font-size: 2rem;
+    color: black;
+    margin-bottom: 20px;
+}
+
+/* Labels and Inputs */
+form label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: black;
+    font-size: 0.95rem;
+}
+
+form input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 18px;
+    border: 1px solid lightgrey;
+    border-radius: 6px;
+    background-color: white;
+    font-family: 'Georgia', serif;
+}
+
+/* Button */
+button[type="submit"] {
+    background-color: saddlebrown;
+    color: floralwhite;
+    border: 1px solid brown;
+    padding: 12px 22px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    font-family: 'Georgia', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 2px 2px 5px tan;
+}
+
+button[type="submit"]:hover {
+    background-color: burlywood;
+    box-shadow: 2px 2px 7px peru;
+}
+
+

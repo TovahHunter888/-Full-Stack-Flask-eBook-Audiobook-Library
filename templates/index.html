@@ -1,0 +1,45 @@
+<!-- Tell the browser this is an HTML5 document -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Set character encoding to UTF-8 so it supports all text -->
+    <meta charset="UTF-8">
+    <!-- Make the page responsive on different screen sizes -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- This is the title that shows up in the browser tab -->
+    <title>The Reading Nookie</title>
+    <!-- Link to our external CSS file for styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+     <!-- Page title inside the app UI -->
+    <h1 class="title">The Reading Nookie</h1>
+
+    <!-- Wrapper to contain everything in the center of the page -->
+    <div class = "container">
+        <!-- Greeting the user -->
+        <h1>Welcome</h1>
+        <!-- Form to collect user information and send it to Flask backend -->
+        <form action="{{ url_for('add_user')}}" method="POST" >
+            <!-- First name input field -->
+            <label for="first_name">Enter First Name:</label>
+            <input type="text" name="col_first_name" required><br><br>  
+            
+            <!-- Last name input field -->
+            <label for="last_name">Enter Last Name:</label>
+            <input type="text" name="col_last_name" required><br><br>  
+
+            <!-- Username input field -->
+            <label for="username">Enter Your Username</label>
+            <input type="text" name="col_username" required><br><br>
+
+            <!-- Email input field -->
+            <label for="email">Enter Your Email</label>
+            <input type="text" name="col_email" required> <br><br>
+
+            <!-- Submit button to send the form data -->
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

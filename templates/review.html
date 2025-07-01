@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews</title>
+    <link rel="stylesheet" href="{{url_for('static', filename= 'review.css') }}">
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('library') }}">Library</a>
+        <a href="{{ url_for('reviews_book')}}">Reviews</a>
+    </div>
+
+    <h1>What Readers are Saying </h1>
+    
+    <!--This is the main container for all review sections  -->
+    <div class="review-container"> 
+        <!--  Loop through each book and its associated data (cover and reviews)-->
+        {% for col_title, book_data in grouped_reviews.items() %}
+        
+            <!-- This div groups all reviews for a single book-->
+            <div class="review-section">
+                <h2>Book: "{{col_title}}"</h2>
+
+                <!--Display Book Cover Image -->
+                {% if book_data.book_cover %}
+                    <div class="book-cover-container">
+                        <img src="{{ url_for('static', filename='covers/' + book_data.book_cover) }}"
+                            alt="Cover of {{ col_title}}" class = "book_cover">
+                    </div>
+                {% endif %}
+
+                <!-- Check if the list of reviews for this book is not empty-->
+                {% if book_data.review %} 
+                    <!--Start the inner loop to iterate over each review in the reviews_list -->
+                    {% for review in book_data.review %}
+                        <div class="individual-review">
+                            <h3>Review Title: "{{review.review_title}}"</h3>
+
+                            <div class="meta">
+                                Reviewer:<strong>{{review.username}}</strong><br>
+                                Date: {{ review.review_date.strftime('%Y-%m-%d') if review.review_date else 'N/A'}}
+                            </div> 
+
+                            <div class="rating">Rating: {{review.rating}}/5</div>
+                            <p>{{review.comments}}</p>
+                        </div> <!-- Close individual-review div -->
+
+                    <!-- End of inner loop for reviews_list -->
+                    {% endfor %} 
+                {% else %}
+                    <p class="no-review-message">No reviews yet for "{{col_title}}". Be the first!</p>
+                {% endif %} 
+                
+                <hr class="book-separator"> 
+            </div> <!-- Close review-section div -->
+        {% endfor %} <!-- End of outer loop for grouped_reviews -->
+    <div> <!-- Close the main reviews-container div that wraps all sections --> </div>
+</body>
+</html>
